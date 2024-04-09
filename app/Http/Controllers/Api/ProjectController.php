@@ -17,4 +17,24 @@ public function index(){
         'projects'=> $projects,
     ]);
 }
+
+
+
+public function show($slug){
+    $project= Project::with('type', 'technology')->where('slug', $slug )->first();
+
+    if($project){
+        return response()->json([
+            'succes'=> true,
+            'projects'=> $project,
+        ]);
+
+    }
+    else{
+        return response()->json([
+            'succes'=> false,
+            'projects'=> "Empty"
+        ]);
+    }
+}
 }

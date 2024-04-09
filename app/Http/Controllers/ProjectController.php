@@ -115,6 +115,11 @@ public function store(Request $request)
             // Salva il progetto aggiornato
             $project->save();
         }
+
+                    if ($request->has('technologies')) {
+
+                        $project->technology()->sync($request->technologies);
+                    }
         return redirect()->route('dashboard.projects.index')->with('success', 'Project updated successfully.');
     }
 
